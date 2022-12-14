@@ -1,25 +1,43 @@
 <?php
+/*
+ * will only be used for forms nothing else ok
+ */
 
 namespace App\Controller;
-
+use App\Entity\Patient;
+use App\Form\PatientType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class FormController extends AbstractController
 {
     #[Route('/form', name: 'app_form')]
-    public function index(): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     {
-
+        $patient = new Patient();
+        $patientForm = $this->createForm(PatientType::class,$patient);
+        $patientForm->handleRequest($request);
+        $entityManager = $doctrine->getManager();
+        if($patientForm->isSubmitted() && $patientForm->isValid())
+        {
+            $patient = $patientForm->getData();
+            $entityManager->persist($patient);
+            $entityManager->flush();
+            $this->redirectToRoute("app_form_submitted");
+        }
         return $this->render('form/index.html.twig', [
-            'controller_name' => 'FormController',
+            "patientForm" => $patientForm,
         ]);
     }
 
-
-    private function processForm()
+    #[Route('/form/submitted', name: 'app_form_submitted')]
+    public function confirmedSubmission()
     {
-
+        return $this->render('form/index.html.twig', [
+        ]);
     }
+
 }

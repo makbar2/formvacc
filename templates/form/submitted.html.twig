@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <h1>Thank you for submitting a form</h1>
+            <a href="{{ path(app_form) }}">Please click here if you want to submit another one</a>
+        </div>
+        <div class="col"></div>
+    </div>
+
+{% endblock %}

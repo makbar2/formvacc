@@ -43,6 +43,10 @@ class TravelForm
     #[ORM\Column(length: 255)]
     private ?string $history = null;
 
+    #[ORM\OneToOne(inversedBy: 'travelForm', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Patient $patient = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,6 +168,18 @@ class TravelForm
     public function setHistory(string $history): self
     {
         $this->history = $history;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(Patient $patient): self
+    {
+        $this->patient = $patient;
 
         return $this;
     }

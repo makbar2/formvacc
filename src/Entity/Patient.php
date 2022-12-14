@@ -41,6 +41,9 @@ class Patient
     #[ORM\Column]
     private ?bool $notify = null;
 
+    #[ORM\OneToOne(mappedBy: 'patient', cascade: ['persist', 'remove'])]
+    private ?TravelForm $travelForm = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +153,23 @@ class Patient
     public function setNotify(bool $notify): self
     {
         $this->notify = $notify;
+
+        return $this;
+    }
+
+    public function getTravelForm(): ?TravelForm
+    {
+        return $this->travelForm;
+    }
+
+    public function setTravelForm(TravelForm $travelForm): self
+    {
+        // set the owning side of the relation if necessary
+        if ($travelForm->getPatient() !== $this) {
+            $travelForm->setPatient($this);
+        }
+
+        $this->travelForm = $travelForm;
 
         return $this;
     }
