@@ -47,6 +47,15 @@ class TravelForm
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null;
 
+    #[ORM\Column(length: 150)]
+    private ?string $yellowReaction = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $hadCancer = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $hivPostive = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -180,6 +189,42 @@ class TravelForm
     public function setPatient(Patient $patient): self
     {
         $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getYellowReaction(): ?string
+    {
+        return $this->yellowReaction;
+    }
+
+    public function setYellowReaction(string $yellowReaction): self
+    {
+        $this->yellowReaction = $yellowReaction;
+
+        return $this;
+    }
+
+    public function getHadCancer(): ?string
+    {
+        return $this->hadCancer;
+    }
+
+    public function setHadCancer(string $hadCancer): self
+    {
+        $this->hadCancer = $hadCancer;
+
+        return $this;
+    }
+
+    public function getHivPostive(): ?string
+    {
+        return $this->hivPostive;
+    }
+
+    public function setHivPostive(string $hivPostive): self
+    {
+        $this->hivPostive = $hivPostive;
 
         return $this;
     }
