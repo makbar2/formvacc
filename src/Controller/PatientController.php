@@ -41,11 +41,10 @@ class PatientController extends AbstractController
     #[Route('/patient/get/', name: 'app_get_patient')]
     public function patientDetails(Request $request,ManagerRegistry $doctrine)
     {
-        //$query = $request->query->all()["patient_search"]["searchQuery"];
-        $query = "22/12/2022,bag";
+        $query = $request->query->all()["patient_search"]["searchQuery"];
         //inputbags wtf why didnt they just return a array
         $reg = "/,?[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]/";
-        $patients=null;
+
         try
         {
             if(preg_match($reg,$query,$matches)) {
@@ -56,34 +55,20 @@ class PatientController extends AbstractController
                     //need to check if only dob was entered or dob with some characters
                     if(str_contains($query,","))
                     {
-                        //dump($query);
                         $fullNameDOB = explode(",",$query);
-
                         if(preg_match("/[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9],/",$query))
                         {
                             //checking if the user put the dob first just incase
                             $names = explode(" ",$fullNameDOB[1]);
                             $dob = $fullNameDOB[0];
-                            //dump($dob,$names);
+
                         }else//comma before dob
                         {
-                            dump($fullNameDOB);
+                            //dump($fullNameDOB);
                             $names = explode(" ",$fullNameDOB[0]);
                             $dob = $fullNameDOB[1];
 
                         }
-                        //dump("wtf",$names);
-//
-//                        $patients = $doctrine->getRepository(Patient::class)->searchPatientWithDOB
-//                        (
-//                            $names,
-//                            $dob
-//                        );
-
-                        //$patients = $doctrine->getRepository(Patient::class)->f($names);
-                        //$dob = new \DateTime(str_replace("/","-",$dob));
-                        // PHP considers / to mean m/d/Y and - to mean d-m-y, how was i supposed to know that wtf 2 hours gone
-
                         $patients = $doctrine->getRepository(Patient::class)->searchPatientWithDOB($names,$dob);
                     }else
                     {
@@ -98,18 +83,23 @@ class PatientController extends AbstractController
                 }
             }else//no dob was entered
             {
-                dump("no reg match",$query);
-
+                //dump("no reg match", $query);
+                if(str_contains($query," "))
+                {
+                    $query = explode(" ",$query);//surname,firstname
+                }
+                $patients = $doctrine->getRepository(Patient::class)->searchPatient($query);
             }
         }catch(\Exception $e)
         {
-
+            $patients = null;
         }
-
         //doctrine should be doing lazy loading here so we good
+        dump($patients);
         return $this->render('patient/list.html.twig', [
-                "patients" => $patients,
+            "patients" => $patients,
         ]);
+
     }
 
 
