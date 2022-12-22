@@ -64,13 +64,20 @@ class PatientRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
-    public function f($name)
+    public function searchPatient($name)
     {
         $qb = $this->createQueryBuilder("p");
         $qb->where(
             $qb->expr()->like("p.surname",":surname")
-        );
-        $qb->setParameter("surname",$name[0]);
+        )
+            ->setParameter("surname",$name[0]);
+        if(count($name)<1)
+        {
+            $qb->andWhere(
+                $qb->expr()->like("p.first_name",":firstName")
+            )
+                ->setParameter("firstName",$name[1]);
+        }
         return $qb->getQuery()->execute();
     }
 
