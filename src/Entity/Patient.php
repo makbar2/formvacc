@@ -90,6 +90,11 @@ class Patient
         return $this->dob;
     }
 
+    public function dobStr(): string
+    {
+        return $this->dob->format("d-m-Y");
+    }
+
     public function setDob(\DateTimeInterface $dob): self
     {
         $this->dob = $dob;

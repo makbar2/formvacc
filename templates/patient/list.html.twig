@@ -6,9 +6,17 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-{#            {% for i in patients %}#}
-{#                i.first_name#}
-{#            {% endfor %}#}
+            {% if patients %}
+                {% for i in patients %}
+                    <a href="">
+                        {{ i.firstname  }}
+                        {{ i.surname }}
+                        {{ i.dobStr }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <h1>no patients found </h1>
+            {% endif %}
         </div>
         <div class="col"></div>
     </div>

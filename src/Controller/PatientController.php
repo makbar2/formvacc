@@ -38,8 +38,14 @@ class PatientController extends AbstractController
     }
 
 
+    /**
+     * gets the results from the query
+     * @param Request $request
+     * @param ManagerRegistry $doctrine
+     * @return Response
+     */
     #[Route('/patient/get/', name: 'app_get_patient')]
-    public function patientDetails(Request $request,ManagerRegistry $doctrine)
+    public function patientResults(Request $request,ManagerRegistry $doctrine)
     {
         $query = $request->query->all()["patient_search"]["searchQuery"];
         //inputbags wtf why didnt they just return a array
@@ -102,7 +108,16 @@ class PatientController extends AbstractController
 
     }
 
+    /**
+     * create view to see the details of the patient and do a consultation
+     *
+     * @return void
+     */
+    #[Route('/patient/details/{id}', name: 'app_patient_delete ')]
+    public function patientDetails(int $id)
+    {
 
+    }
 
     #[Route('/patient/delete/{id}', name: 'app_patient_delete ')]
     public function deletePatient(int $id)
