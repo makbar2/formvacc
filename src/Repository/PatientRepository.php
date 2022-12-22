@@ -39,6 +39,43 @@ class PatientRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchPatientWithDOB($name, $dob)
+    {
+        /**
+         * slight problem with this is that idk if with doctrine i can filter the data by dob then search it for the
+         * names
+         */
+        $dob = str_replace("/","-",$dob);
+        $dob = new \DateTime($dob);
+        $qb = $this->createQueryBuilder("p")
+            ->where("p.dob = :dob");
+        $qb->andWhere(
+            $qb->expr()->like("p.surname",":surname")
+        );
+        if(count($name)<1)
+        {
+            $qb->andWhere(
+                $qb->expr()->like("p.first_name",":firstName")
+            )
+                ->setParameter("firstName",$name[1]);
+        }
+        $qb->setParameter("dob",$dob)
+            ->setParameter("surname",$name[0]);
+        return $qb->getQuery()->execute();
+    }
+
+    public function f($name)
+    {
+        $qb = $this->createQueryBuilder("p");
+        $qb->where(
+            $qb->expr()->like("p.surname",":surname")
+        );
+        $qb->setParameter("surname",$name[0]);
+        return $qb->getQuery()->execute();
+    }
+
+
+
 //    /**
 //     * @return Patient[] Returns an array of Patient objects
 //     */

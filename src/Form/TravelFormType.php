@@ -65,7 +65,7 @@ class TravelFormType extends AbstractType
             ])
             ->add("hadCancer")
             ->add("yellowReaction")
-            ->add("hibPositive")
+            ->add("hivPostive")
         ;
     }
 
