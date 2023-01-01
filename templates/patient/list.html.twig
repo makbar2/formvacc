@@ -8,7 +8,7 @@
         <div class="col">
             {% if patients %}
                 {% for i in patients %}
-                    <a href="">
+                    <a href="{{ path("app_patient_details", {'id' : i.id}) }}">
                         {{ i.firstname  }}
                         {{ i.surname }}
                         {{ i.dobStr }}

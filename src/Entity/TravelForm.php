@@ -54,7 +54,46 @@ class TravelForm
     private ?string $hadCancer = null;
 
     #[ORM\Column(length: 150)]
-    private ?string $hivPostive = null;
+    private ?string $hivPositive = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $DTP = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $hep_b = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $Rabies = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $Shingles = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $Typhoid = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $Meningitis = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $JapBEncephalitis = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $MeningitisB = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $Chickenpox = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $hep_a = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $yellow_fever = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $influenza = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $tick_born_encephalitis = null;
 
     public function getId(): ?int
     {
@@ -217,14 +256,170 @@ class TravelForm
         return $this;
     }
 
-    public function getHivPostive(): ?string
+    public function getHivPositive(): ?string
     {
-        return $this->hivPostive;
+        return $this->hivPositive;
     }
 
-    public function setHivPostive(string $hivPostive): self
+    public function setHivPositive(string $hivPositive): self
     {
-        $this->hivPostive = $hivPostive;
+        $this->hivPositive = $hivPositive;
+
+        return $this;
+    }
+
+    public function getDTP(): ?string
+    {
+        return $this->DTP;
+    }
+
+    public function setDTP(string $DTP): self
+    {
+        $this->DTP = $DTP;
+
+        return $this;
+    }
+
+    public function getHepB(): ?string
+    {
+        return $this->hep_b;
+    }
+
+    public function setHepB(string $hepB): self
+    {
+        $this->hep_b = $hepB;
+
+        return $this;
+    }
+
+    public function getRabies(): ?string
+    {
+        return $this->Rabies;
+    }
+
+    public function setRabies(string $Rabies): self
+    {
+        $this->Rabies = $Rabies;
+
+        return $this;
+    }
+
+    public function getShingles(): ?string
+    {
+        return $this->Shingles;
+    }
+
+    public function setShingles(string $Shingles): self
+    {
+        $this->Shingles = $Shingles;
+
+        return $this;
+    }
+
+    public function getTyphoid(): ?string
+    {
+        return $this->Typhoid;
+    }
+
+    public function setTyphoid(string $Typhoid): self
+    {
+        $this->Typhoid = $Typhoid;
+
+        return $this;
+    }
+
+    public function getMeningitis(): ?string
+    {
+        return $this->Meningitis;
+    }
+
+    public function setMeningitis(string $Meningitis): self
+    {
+        $this->Meningitis = $Meningitis;
+
+        return $this;
+    }
+
+    public function getJapBEncephalitis(): ?string
+    {
+        return $this->JapBEncephalitis;
+    }
+
+    public function setJapBEncephalitis(string $JapBEncephalitis): self
+    {
+        $this->JapBEncephalitis = $JapBEncephalitis;
+
+        return $this;
+    }
+
+    public function getMeningitisB(): ?string
+    {
+        return $this->MeningitisB;
+    }
+
+    public function setMeningitisB(string $MeningitisB): self
+    {
+        $this->MeningitisB = $MeningitisB;
+
+        return $this;
+    }
+
+    public function getChickenpox(): ?string
+    {
+        return $this->Chickenpox;
+    }
+
+    public function setChickenpox(string $Chickenpox): self
+    {
+        $this->Chickenpox = $Chickenpox;
+
+        return $this;
+    }
+
+    public function getHepA(): ?string
+    {
+        return $this->hep_a;
+    }
+
+    public function setHepA(string $hepA): self
+    {
+        $this->hep_a = $hepA;
+
+        return $this;
+    }
+
+    public function getYellowFever(): ?string
+    {
+        return $this->yellow_fever;
+    }
+
+    public function setYellowFever(string $yellow_fever): self
+    {
+        $this->yellow_fever = $yellow_fever;
+
+        return $this;
+    }
+
+    public function getInfluenza(): ?string
+    {
+        return $this->influenza;
+    }
+
+    public function setInfluenza(string $influenza): self
+    {
+        $this->influenza = $influenza;
+
+        return $this;
+    }
+
+    public function getTickBornEncephalitis(): ?string
+    {
+        return $this->tick_born_encephalitis;
+    }
+
+    public function setTickBornEncephalitis(string $tick_born_encephalitis): self
+    {
+        $this->tick_born_encephalitis = $tick_born_encephalitis;
 
         return $this;
     }

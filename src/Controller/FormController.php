@@ -5,7 +5,7 @@
 
 namespace App\Controller;
 use App\Entity\Patient;
-use App\Form\PatientFormType;
+use App\Form\TravelFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,19 +18,20 @@ class FormController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         $patient = new Patient();
-        $patientForm = $this->createForm(PatientFormType::class,$patient);
-        $patientForm->handleRequest($request);
+        $travelForm = $this->createForm(TravelFormType::class,null);
+        $travelForm->handleRequest($request);
         $entityManager = $doctrine->getManager();
-        if($patientForm->isSubmitted() && $patientForm->isValid())
+        if($travelForm->isSubmitted() && $travelForm->isValid())
         {
-            $patient = $patientForm->getData();
-            dump($patient->getDob());
+            dump($travelForm->getData());
+            //$patient = $travelForm->getData();
+            //dump($patient->getDob());
             //$entityManager->persist($patient);
             //$entityManager->flush();
             $this->redirectToRoute("app_form_submitted");
         }
         return $this->render('form/index.html.twig', [
-            "patientForm" => $patientForm,
+            "form" => $travelForm,
         ]);
     }
 

@@ -7,7 +7,7 @@ namespace App\Controller;
  */
 
 use App\Entity\Patient;
-use App\Form\PatientFormType;
+use App\Form\TravelFormType;
 use App\Form\PatientSearchType;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -113,7 +113,7 @@ class PatientController extends AbstractController
      *
      * @return void
      */
-    #[Route('/patient/details/{id}', name: 'app_patient_delete ')]
+    #[Route('/patient/details/{id}', name: 'app_patient_details')]
     public function patientDetails(int $id)
     {
 

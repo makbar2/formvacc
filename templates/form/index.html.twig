@@ -7,12 +7,32 @@
       <div class="col"></div>
       <div class="col">
          <div class="form-group">
-            {{ form(patientForm) }}
-            {{ form_end(patientForm) }}
+            {{ form_start(form) }}
+            {{ form(form.patientForm) }}
+            {{ form(form.travelForm) }}
+            {{ form_end(form) }}
          </div>
 
       </div>
       <div class="col"></div>
    </div>
-
+<script>
+   function checkBox(divID)//this will run on change of the textbox
+   {
+      let checkBox = divID.parentNode.parentNode.children[1].lastChild;
+      /**
+       * parentNode.parentNode = div for the entire InformationType field
+       * child[1] div for the textFieldDiv
+       * lastChild to get textArea, first child will give label
+       */
+      if(divID.checked)//cant do a not value since sometimes the form might have the check field already pressed
+      {
+         checkBox.disabled = false;
+      }else
+      {
+         checkBox.disabled = true;
+         checkBox.value="";
+      }
+   }
+</script>
 {% endblock %}
