@@ -23,12 +23,12 @@ class FormController extends AbstractController
         $entityManager = $doctrine->getManager();
         if($travelForm->isSubmitted() && $travelForm->isValid())
         {
-            dump($travelForm->getData());
+            dump($travelForm);
             //$patient = $travelForm->getData();
             //dump($patient->getDob());
             //$entityManager->persist($patient);
             //$entityManager->flush();
-            $this->redirectToRoute("app_form_submitted");
+            //$this->redirectToRoute("app_form_submitted");
         }
         return $this->render('form/index.html.twig', [
             "form" => $travelForm,
