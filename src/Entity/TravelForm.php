@@ -13,8 +13,8 @@ class TravelForm
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?bool $feelingWell = null;
+    #[ORM\Column(length: 30)]
+    private ?string $feelingWell = null;
 
     #[ORM\Column(length: 300)]
     private ?string $pastMedicalHistory = null;
