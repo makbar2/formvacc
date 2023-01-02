@@ -3,16 +3,40 @@
 {% block title %}Hello FormController!{% endblock %}
 
 {% block body %}
-   {{ form(form) }}
+   <div class="row">
+      <div class="col"></div>
+      <div class="col">
+
+         {{ form_start(form) }}
+               {{ form_row(form.patientForm) }}
+         {# if i couldnt loop through the travel form i was gonna kms  #}
+         {% for i in form.travelForm %}
+            <div class="row">
+               {{ form_label(i) }}
+               <div class="col-1">
+                  {{ form_row(i.check) }}
+               </div>
+               <div class="col">
+                  {{ form_row(i.textField) }}
+               </div>
+            </div>
+         {% endfor %}
+         {{ form_end(form) }}
+      </div>
+      <div class="col"></div>
+
+   </div>
 <script>
    function checkBox(divID)//this will run on change of the textbox
    {
-      console.log("dplkka");
-      let checkBox = divID.parentNode.parentNode.children[1].lastChild;
+      let checkBox = divID.parentNode.parentNode.parentNode.children[2].children[0].children[1];
       /**
-       * parentNode.parentNode = div for the entire InformationType field
-       * child[1] div for the textFieldDiv
-       * lastChild to get textArea, first child will give label
+       * parentNode = div surrounding checkbox
+       * parentNode col around the checkbox and that div
+       * parentNode row
+       * children[2] the column of which the textarea is located in
+       * children[0], the surrounding div of the contents of the column
+       * children[1] the textarea
        */
       if(divID.checked)//cant do a not value since sometimes the form might have the check field already pressed
       {
