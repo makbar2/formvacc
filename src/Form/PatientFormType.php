@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Patient;
 
 class PatientFormType extends AbstractType
 {
@@ -18,7 +19,7 @@ class PatientFormType extends AbstractType
         $builder
             ->add('firstName', TextType::class,
                 [
-              //      "attr" => ["class" => "form-control"]
+                    "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('surname', TextType::class,

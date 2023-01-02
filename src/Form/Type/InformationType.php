@@ -18,21 +18,20 @@ class InformationType extends AbstractType
         $builder
             ->add("check",CheckboxType::class,
             [
-//                "attr"=>
-//                    [
-//                        "onchange" => "checkBox(this)"//pass id into function
-//                    ],
-//                "label" => " ",
+                "attr"=>
+                    [
+                        "onchange" => "checkBox(this)"//pass id into function
+                    ],
+                "label" => " ",
             ])
             ->add("textField",TextareaType::class,
             [
-//                "label" => " ",
-//                "attr"=>
-//                [
-//                    "class" => "form-control",
-//                    "rows" => 2,
-//                    "disabled" => true,
-//                ],
+                "label" => " ",
+                "attr"=>
+                [
+                    "rows" => 2,
+                    "disabled" => true,
+                ],
             ])
             ;
     }

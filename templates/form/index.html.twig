@@ -3,16 +3,11 @@
 {% block title %}Hello FormController!{% endblock %}
 
 {% block body %}
-   <div class="row">
-      <div class="col"></div>
-      <div class="col">
-         {{ form(form) }}
-      </div>
-      <div class="col"></div>
-   </div>
+   {{ form(form) }}
 <script>
    function checkBox(divID)//this will run on change of the textbox
    {
+      console.log("dplkka");
       let checkBox = divID.parentNode.parentNode.children[1].lastChild;
       /**
        * parentNode.parentNode = div for the entire InformationType field
