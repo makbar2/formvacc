@@ -13,8 +13,8 @@ class TravelForm
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?bool $feelingWell = null;
+    #[ORM\Column(length: 30)]
+    private ?string $feelingWell = null;
 
     #[ORM\Column(length: 300)]
     private ?string $pastMedicalHistory = null;
@@ -100,12 +100,12 @@ class TravelForm
         return $this->id;
     }
 
-    public function isFeelingWell(): ?bool
+    public function isFeelingWell(): ?string
     {
         return $this->feelingWell;
     }
 
-    public function setFeelingWell(bool $feelingWell): self
+    public function setFeelingWell(string $feelingWell): self
     {
         $this->feelingWell = $feelingWell;
 

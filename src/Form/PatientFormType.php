@@ -9,8 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PatientFormType extends AbstractType
 {
@@ -19,17 +19,17 @@ class PatientFormType extends AbstractType
         $builder
             ->add('firstName', TextType::class,
                 [
-                    "attr" => ["class" => "form-control"]
+              //      "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('surname', TextType::class,
                 [
-                    "attr" => ["class" => "form-control"]
+              //      "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('email',EmailType::class,
                 [
-                    "attr" => ["class" => "form-control"]
+              //      "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('dob', DateType::class,
@@ -44,33 +44,38 @@ class PatientFormType extends AbstractType
                         "male" => 0,
                         "female" => 1
                     ],
-                    "attr" => ["class" => "form-select"]
+           //         "attr" => ["class" => "form-select"]
                 ]
             )
             ->add('address', TextType::class,
                 [
-                    "attr" => ["class" => "form-control"]
+//                    "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('GPName', TextType::class,
                 [
-                    "attr" => ["class" => "form-control"],
+//                    "attr" => ["class" => "form-control"],
                     "label" => "GP Name"
                 ]
             )
             ->add('GPAddress', TextType::class,
                 [
-                    "attr" => ["class" => "form-control"],
+//                    "attr" => ["class" => "form-control"],
                     "label" => "GP Address"
                 ]
             )
             ->add('notify', CheckboxType::class,
                 [
-                    "attr" => ["class" => "form-check-input"]
+//                    "attr" => ["class" => "form-check-input"]
                 ]
             )
         ;
     }
-
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            "data_class" => Patient::class,
+        ]);
+    }
 
 }

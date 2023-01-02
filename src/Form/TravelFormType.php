@@ -12,7 +12,7 @@ class TravelFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('patientForm',PatientFormType::class,
+            ->add('patient',PatientFormType::class,
                 [
                     "attr" =>[
                         "class"  =>"patientForm",
@@ -36,10 +36,5 @@ class TravelFormType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            // Configure your form options here
-        ]);
-    }
+
 }

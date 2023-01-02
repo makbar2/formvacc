@@ -18,17 +18,19 @@ class FormController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         $patient = new Patient();
-        $travelForm = $this->createForm(TravelFormType::class,null);
+        $travelForm = $this->createForm(TravelFormType::class );
         $travelForm->handleRequest($request);
         $entityManager = $doctrine->getManager();
         if($travelForm->isSubmitted() && $travelForm->isValid())
         {
-            dump($travelForm);
-            //$patient = $travelForm->getData();
-            //dump($patient->getDob());
-            //$entityManager->persist($patient);
-            //$entityManager->flush();
-            //$this->redirectToRoute("app_form_submitted");
+
+            /**
+             * need to convert travelForm data from array to string as the user can have text box ticked and then
+             * add extra information if needed.
+             * todo:record vaccine history too
+             */
+            dump($travelForm->getData());
+
         }
         return $this->render('form/index.html.twig', [
             "form" => $travelForm,
@@ -42,4 +44,11 @@ class FormController extends AbstractController
         ]);
     }
 
+
+
+
+    private function travelFormProcess()
+    {
+
+    }
 }
