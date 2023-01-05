@@ -6,46 +6,107 @@
    <div class="row">
       <div class="col"></div>
       <div class="col">
-
          {{ form_start(form) }}
+         <h1>Patient Details</h1>
                {{ form_row(form.patientForm) }}
          {# if i couldnt loop through the travel form i was gonna kms  #}
+         <h1>Travel Form</h1>
          {% for i in form.travelForm %}
             <div class="row">
-               {{ form_label(i) }}
-               <div class="col-1">
-                  {{ form_row(i.check) }}
+               <div class="row question">
+                  <div class="col">
+                     {{ form_label(i) }}
+                  </div>
+                  <div class="col-1">
+                     {{ form_row(i.check) }}
+                  </div>
                </div>
-               <div class="col">
+               <div class="row">
                   {{ form_row(i.textField) }}
                </div>
             </div>
          {% endfor %}
+         <h1>Vaccine History</h1>
+         <p>Please confirm which vaccines you've already had and add dates please</p>
+         {% for i in form.vaccineHistory %}
+            <div class="row">
+               {{ form_label(i) }}
+               <div class="col">
+                  {{ form_row(i.check) }}
+               </div>
+               <div class="col">
+                  {{ form_row(i.date) }}
+               </div>
+            </div>
+         {% endfor %}
+         <div id="womenSection">
+{#            {{ form_row(womenQuestions) }}#}
+            <div id="women">
+
+            </div>
+         </div>
          {{ form_end(form) }}
       </div>
       <div class="col"></div>
 
    </div>
 <script>
-   function checkBox(divID)//this will run on change of the textbox
+   function checkBox(divID,type)//this will run on change of the textbox
    {
-      let checkBox = divID.parentNode.parentNode.parentNode.children[2].children[0].children[1];
-      /**
-       * parentNode = div surrounding checkbox
-       * parentNode col around the checkbox and that div
-       * parentNode row
-       * children[2] the column of which the textarea is located in
-       * children[0], the surrounding div of the contents of the column
-       * children[1] the textarea
-       */
+      let checkBoxHTML=null
+      console.log(type);
+      //any change to the layout means checkBox needs to be changed
+      if (type == "info")//for check and text area
+      {
+         console.log("info");
+          checkBoxHTML = divID.parentNode.parentNode.parentNode.parentNode.children[1].children[0].children[1];
+      }else//for the check and date
+      {
+         checkBoxHTML = divID.parentNode.parentNode.parentNode.children[2].children[0].children[1];
+      }
       if(divID.checked)//cant do a not value since sometimes the form might have the check field already pressed
       {
-         checkBox.disabled = false;
+         checkBoxHTML.disabled = false;
       }else
       {
-         checkBox.disabled = true;
-         checkBox.value="";
+         checkBoxHTML.disabled = true;
+         checkBoxHTML.value="";
       }
    }
+   function womenQuestions(value)
+   {
+      //todo link it up with a hidden field
+      if(value == 1)
+      {
+         document.getElementById("women").innerHTML +=`
+                <p>Please tick the following boxes if they apply to you </p>
+                <div class="row">
+                    <div class="col">
+                        <label for="plan">Are you pregnant or are planning a pregnancy ?</label>
+                    </div>
+                    <div class="col-1">
+                        <input type="checkbox"  id="plan" class="form-check-input" onchange="updateField()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="plan">Are you breastfeeding ?</label>
+                    </div>
+                    <div class="col-1">
+                        <input type="checkbox"  id="breast" class="form-check-input" onchange="updateField()">
+                    </div>
+                </div>
+         `;
+
+      }else {
+         document.getElementById("women").innerHTML = "";
+      }
+   }
+
+   function updateField()
+   {
+      document.getElementById("travel_form_womenQuestions").value = document.getElementById("breast").checked+","+document.getElementById("plan").checked;
+   }
+
 </script>
 {% endblock %}

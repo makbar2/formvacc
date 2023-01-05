@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\MedicalHistoryRepository;
+use Doctrine\DBAL\Driver\PDO\Exception;
 use Doctrine\ORM\Mapping as ORM;
+use MongoDB\Driver\Exception\ExecutionTimeoutException;
 
 #[ORM\Entity(repositoryClass: MedicalHistoryRepository::class)]
 class TravelForm
@@ -86,7 +88,7 @@ class TravelForm
     #[ORM\Column(length: 30)]
     private ?string $hep_a = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $yellow_fever = null;
 
     #[ORM\Column(length: 30)]
@@ -94,6 +96,12 @@ class TravelForm
 
     #[ORM\Column(length: 30)]
     private ?string $tick_born_encephalitis = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $planPregnancy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?bool $breastFeeding = null;
 
     public function getId(): ?int
     {
@@ -420,6 +428,148 @@ class TravelForm
     public function setTickBornEncephalitis(string $tick_born_encephalitis): self
     {
         $this->tick_born_encephalitis = $tick_born_encephalitis;
+
+        return $this;
+    }
+
+
+    /**
+     * @param $form
+     * @param $field "textField" or "date"
+     * @return void
+     * @throws \Exception
+     */
+    public function setData($form,$field)
+    {
+        foreach ($form as $i => $value)
+        {
+            switch($i)
+            {
+                default:
+                    throw new \Exception("Invalid array in travelForm");
+                    break;
+                case "feelingWell":
+                    $this->setFeelingWell($this->formatAnswer($value,$field));
+                    break;
+                case "pastMedicalHistory":
+                    $this->setPastMedicalHistory($this->formatAnswer($value,$field));
+                    break;
+                case "currentMedicines":
+                    $this->setCurrentMedicines($this->formatAnswer($value,$field));
+                    break;
+                case "allergies":
+                    $this->setAllergies($this->formatAnswer($value,$field));
+                    break;
+                case "hypersensitive":
+                    $this->setHypersensitive($this->formatAnswer($value,$field));
+                    break;
+                case "epilepsy":
+                    $this->setEpilepsy($this->formatAnswer($value,$field));
+                    break;
+                case "blackWater":
+                    $this->setBlackWater($this->formatAnswer($value,$field));
+                    break;
+                case "liverFunction":
+                    $this->setLiverFunction($this->formatAnswer($value,$field));
+                    break;
+                case "therapy":
+                    $this->setTherapy($this->formatAnswer($value,$field));
+                    break;
+                case "history":
+                    $this->setHistory($this->formatAnswer($value,$field));
+                    break;
+                case "hadCancer":
+                    $this->setHadCancer($this->formatAnswer($value,$field));
+                    break;
+                case "yellowReaction":
+                    $this->setYellowReaction($this->formatAnswer($value,$field));
+                    break;
+                case "hivPositive":
+                    $this->setHivPositive($this->formatAnswer($value,$field));
+                    break;
+                case "DTP":
+                    $this->setDTP($this->formatAnswer($value,$field));
+                    break;
+                case "hep_b":
+                    $this->setHepB($this->formatAnswer($value,$field));
+                    break;
+                case "Rabies":
+                    $this->setRabies($this->formatAnswer($value,$field));
+                    break;
+                case "shingles":
+                    $this->setShingles($this->formatAnswer($value,$field));
+                    break;
+                case "Typhoid":
+                    $this->setTyphoid($this->formatAnswer($value,$field));
+                    break;
+                case "Meningitis":
+                    $this->setMeningitis($this->formatAnswer($value,$field));
+                    break;
+                case "chickenPox":
+                    $this->setChickenpox($this->formatAnswer($value,$field));
+                    break;
+                case "hepA":
+                    $this->setHepA($this->formatAnswer($value,$field));
+                    break;
+                case "Influenza":
+                    $this->setInfluenza($this->formatAnswer($value,$field));
+                    break;
+                case "tickBornEncephalitis":
+                    $this->setTickBornEncephalitis($this->formatAnswer($value,$field));
+                    break;
+                case "JapBEncephalitis":
+                    $this->setJapBEncephalitis($this->formatAnswer($value,$field));
+                    break;
+                case "MeningitisB":
+                    $this->setMeningitisB($this->formatAnswer($value,$field));
+                    break;
+            }
+        }
+    }
+
+
+    public function setWomenQuestions(string $data)
+    {
+        $data = explode(",",$data);
+        $this->planPregnancy = $data[0];
+        $this->breastFeeding = $data[1];
+    }
+
+    private function formatAnswer($answer,$field): string
+    {
+
+        if($answer["check"])
+        {
+            if($field == "date")
+            {
+
+                $answer[$field] = $answer[$field]->format("Y-m-d");
+            }
+            return $answer["check"].",".$answer[$field];
+        }
+        return "";
+    }
+
+    public function getPlanPregnancy(): ?bool
+    {
+        return $this->planPregnancy;
+    }
+
+    public function setPlanPregnancy(?bool $planPregnancy): self
+    {
+        $this->planPregnancy = $planPregnancy;
+
+        return $this;
+    }
+
+    public function getBreastFeeding(): ?bool
+    {
+        return $this->breastFeeding;
+    }
+
+    public function setBreastFeeding(?bool $breastFeeding): self
+    {
+        $this->breastFeeding = $breastFeeding;
 
         return $this;
     }

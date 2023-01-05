@@ -24,12 +24,12 @@ class PatientFormType extends AbstractType
             )
             ->add('surname', TextType::class,
                 [
-              //      "attr" => ["class" => "form-control"]
+                    "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('email',EmailType::class,
                 [
-              //      "attr" => ["class" => "form-control"]
+                    "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('dob', DateType::class,
@@ -44,29 +44,32 @@ class PatientFormType extends AbstractType
                         "male" => 0,
                         "female" => 1
                     ],
-           //         "attr" => ["class" => "form-select"]
+                    "attr" => [
+                        "class" => "form-select",
+                        "onchange" => "womenQuestions(this.value)"
+                    ]
                 ]
             )
             ->add('address', TextType::class,
                 [
-//                    "attr" => ["class" => "form-control"]
+                    "attr" => ["class" => "form-control"]
                 ]
             )
             ->add('GPName', TextType::class,
                 [
-//                    "attr" => ["class" => "form-control"],
+                    "attr" => ["class" => "form-control"],
                     "label" => "GP Name"
                 ]
             )
             ->add('GPAddress', TextType::class,
                 [
-//                    "attr" => ["class" => "form-control"],
+                    "attr" => ["class" => "form-control"],
                     "label" => "GP Address"
                 ]
             )
             ->add('notify', CheckboxType::class,
                 [
-//                    "attr" => ["class" => "form-check-input"]
+                    "attr" => ["class" => "form-check-input"]
                 ]
             )
         ;

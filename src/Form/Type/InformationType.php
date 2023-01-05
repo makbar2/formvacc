@@ -20,7 +20,8 @@ class InformationType extends AbstractType
             [
                 "attr"=>
                     [
-                        "onchange" => "checkBox(this)"//pass id into function
+                        "onchange" => "checkBox(this,'info')",//pass id into function
+                        "class"=> "form-check-input",
                     ],
                 "label" => " ",
             ])

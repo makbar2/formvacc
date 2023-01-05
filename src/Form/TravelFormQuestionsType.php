@@ -2,12 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\TravelForm;
+
 use App\Form\Type\InformationType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class TravelFormQuestionsType extends AbstractType
 {
@@ -58,57 +57,17 @@ class TravelFormQuestionsType extends AbstractType
             ])
             ->add("hadCancer", InformationType::class,
                 [
-
-                ]
-            )
-            ->add("yellowReaction", InformationType::class,
-                [
-
+                    "label" => "Do you have Cancer ?",
                 ]
             )
             ->add("hivPositive", InformationType::class,
                 [
-
+                    "label" => "Are you HIV positive ?",
                 ]
             )
-            ->add("DTP", InformationType::class,
-                [
 
-                ]
-            )
-            ->add("hep_b", InformationType::class,
-                [
-
-                ]
-            )
-            ->add("Rabies", InformationType::class,
-                [
-
-                ]
-            )
-            ->add("shingles", InformationType::class,
-                [
-
-                ]
-            )
-            ->add("Typhoid", InformationType::class,
-                [
-
-                ]
-            )
-            ->add("Meningitis", InformationType::class,
-                [
-
-                ]
-            )
 
         ;
     }
-//    public function configureOptions(OptionsResolver $resolver): void
-//    {
-//        $resolver->setDefaults([
-//            "data_class" => TravelForm::class
-//        ]);
-//    }
 
 }
