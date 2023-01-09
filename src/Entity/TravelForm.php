@@ -584,21 +584,22 @@ class TravelForm
     public function getResults(): array
     {
         /**
-         * returns two arrays, one filled with the data from the qeustions that were asked to the user
-         * the other array is filled with their vaccine history, containting wheather they've had it and the date
+         * this function makes it easier to write the twig code for displaying the form data
+         * both arrays that are returned a 2d
+         * questionArray key = name of the attribute. 0 = question from the form, 1= their response
          */
         $attr = get_object_vars($this);
+        $dateExpression = "/1,?[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/";
+
         $historyArray = [];
         $questionArray = [];
         $check="";
-        $comment="";
-        //dump($attr);
         $invalidAttributes = ["id","patient"];
         foreach($attr as $i => $value)
         {
             if(!in_array($i,$invalidAttributes))
             {
-                dump($i,$value);
+                //dump($i,$value);
                 switch($i)
                 {
                     case "feelingWell":
@@ -650,10 +651,18 @@ class TravelForm
                     case "tickBornEncephalitis":
                     case "JapBEncephalitis":
                     case "MeningitisB":
-                        if(str_contains(",",$value))
+                        if($value != null)
                         {
-                            $historyArray[$i] = [$check,$value];
+                            dump($value);
+                            if(preg_match($dateExpression,$value))
+                            {
+                                dump(["match",$value]);
+                                $historyArray[$i] = [true,$value];
+                            }else{
+                                $historyArray[$i] = [true,null];
+                            }
                         }
+
                         break;
                     default: break;
                 }

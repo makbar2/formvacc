@@ -4,6 +4,8 @@
 
 {% block body %}
    {# i hate front end, making stuff look nice is fucking annoying #}
+    <nav class="navbar navbar-dark bg-dark">
+    </nav>
     <div class="box mx-auto">
         <div id="patientDetails" class="section">
             <div class="row">
@@ -37,112 +39,45 @@
                 </div>
             </div>
         </div>
-        <div class=section id="patientQuestions">
-            {% for i in attr %}
-                {# no switch statements ): #}
-                {% if i == "feelingWell" %}
-                {% endif %}
+        <div class="section" id="patientQuestions">
+            <h2>Patient Questions </h2>
+            <div class="row">
+                {% for i in data[0] %}
+                   <div class="row data">
+                       <div class="col">
+                           <label for>{{ i[0] }}</label>
+                       </div>
+                       <div class="col">
+                           {% if i[1] != null %}
+                               <input type="checkbox" disabled checked>
+                               <p>{{ i[1] }}</p>
+                           {% else %}
+                           <input type="checkbox" disabled id="{{ i[0] }}">
+                           {% endif %}
+                       </div>
+                   </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="section" id="patientVaccineHistory">
+            <h2>Vaccine History</h2>
+            {% for key, value in data[1] %}
+                <div class="row data">
+                    <div class="col">
+                        <label for>{{ key }}</label>
+                    </div>
+                    <div class="col">
+                        {% if value[1] != null %}
+                            <input type="checkbox" disabled checked>
+                        {% else %}
+                            <input type="checkbox" disabled id="{{ value[0] }}">
+                        {% endif %}
+                    </div>
+                    <div class="col">
+
+                    </div>
+                </div>
             {% endfor %}
-            <div class="row">
-                <div class="col">
-                    are you feeling well today
-                </div>
-                    {% if patient.travelForm.feelingWell %}
-                    <div class="col">
-                        <input type="checkbox" class="form-check" checked="checked" disabled>
-                    </div>
-                    <div class="col">
-
-                    </div>
-                    {% endif %}
-
-            </div>
-            {# <div class="row">
-                <div class="col">
-                    have you had any recent or past medical history of note
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you take any current medicines or are you taking halofantrine
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    Do you have any allergies to any medicines, latex or gloves
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you know if you're hypersensitive to mefloquine or related compounds
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you or any of your family suffer from epilepsy
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you have a history of black water fever
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you have severe impairment of liver function
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    have you undergone radiotherapy, chemotherapy, steroids treatment
-                    {{ if patient.travelForm. }}
-                </div>
-                <div class="col"></div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    do you have a history of the following: anxiety, depression, heart, lung, spleen, liver,
-                    kidney, immunity, blood conditions, disorders, diabetes, hiv-adis
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    Do you have Cancer ?
-                </div>
-                <div class="col">
-                    {{ if patient.travelForm. }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    Are you HIV positive ?
-                </div>
-                <div class="col"></div>
-            </div> #}
         </div>
     </div>
 
