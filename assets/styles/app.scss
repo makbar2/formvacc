@@ -1,16 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 .box{
-  width: 1000px;
+  width: 1030px;
+  padding: 5px;
   font-size: 18px;
+  border:solid black;
 }
 
-.data{
-  padding: 0;
-  margin: 0;
-  border-bottom: solid black;
-}
 .section{
-  border-left: solid black;
-  border-right: solid black;
-  border-bottom: solid black ;
+  width: auto;
+
+}
+.textArea{
+  height: 25vh;
+  width: 80vh;
 }

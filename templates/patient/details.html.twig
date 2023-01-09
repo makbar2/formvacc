@@ -43,18 +43,26 @@
             <h2>Patient Questions </h2>
             <div class="row">
                 {% for i in data[0] %}
-                   <div class="row data">
+                   <div class="row data border-bottom">
                        <div class="col">
                            <label for>{{ i[0] }}</label>
                        </div>
-                       <div class="col">
-                           {% if i[1] != null %}
+                       {% if i[1] != null %}
+                           <div class="col-sm-1">
                                <input type="checkbox" disabled checked>
+                           </div>
+                           <div class="col">
                                <p>{{ i[1] }}</p>
-                           {% else %}
-                           <input type="checkbox" disabled id="{{ i[0] }}">
-                           {% endif %}
-                       </div>
+                           </div>
+                       {% else %}
+                           <div class="col-sm-1">
+                               <input type="checkbox" disabled checked>
+                           </div>
+                           <div class="col">
+
+                           </div>
+
+                       {% endif %}
                    </div>
                 {% endfor %}
             </div>
@@ -62,19 +70,17 @@
         <div class="section" id="patientVaccineHistory">
             <h2>Vaccine History</h2>
             {% for key, value in data[1] %}
-                <div class="row data">
+                <div class="row data border-bottom">
                     <div class="col">
                         <label for>{{ key }}</label>
                     </div>
-                    <div class="col">
-                        {% if value[1] != null %}
-                            <input type="checkbox" disabled checked>
-                        {% else %}
-                            <input type="checkbox" disabled id="{{ value[0] }}">
-                        {% endif %}
+                    <div class="col-sm-1">
+                        <input type="checkbox" disabled checked id="{{ key }}">
                     </div>
                     <div class="col">
-
+                        {% if value[1] != null %}
+                            {{ value[1] }}
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

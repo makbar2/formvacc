@@ -118,7 +118,6 @@ class PatientController extends AbstractController
         $travelForm = $this->createForm(TravelFormType::class);//so that you can edit the patient's form
         $patient = $doctrine->getRepository(Patient::class)->find($id);
         $data = $patient->getTravelForm()->getResults();
-        dump($data);
         return $this->render('patient/details.html.twig', [
             "patient" => $patient,
             "form" => $travelForm,

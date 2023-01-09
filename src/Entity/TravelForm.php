@@ -590,7 +590,6 @@ class TravelForm
          */
         $attr = get_object_vars($this);
         $dateExpression = "/1,?[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/";
-
         $historyArray = [];
         $questionArray = [];
         $check="";
@@ -599,7 +598,6 @@ class TravelForm
         {
             if(!in_array($i,$invalidAttributes))
             {
-                //dump($i,$value);
                 switch($i)
                 {
                     case "feelingWell":
@@ -653,11 +651,12 @@ class TravelForm
                     case "MeningitisB":
                         if($value != null)
                         {
-                            dump($value);
                             if(preg_match($dateExpression,$value))
                             {
-                                dump(["match",$value]);
-                                $historyArray[$i] = [true,$value];
+                                $value = explode(",",$value);
+                                $splitDate = explode("-",$value[1]);//reversing the date order so its d-m-y
+                                $date = $splitDate[2]."-".$splitDate[1]."-".$splitDate[0];
+                                $historyArray[$i] = [true,$date];
                             }else{
                                 $historyArray[$i] = [true,null];
                             }

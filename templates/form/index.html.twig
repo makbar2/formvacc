@@ -12,7 +12,7 @@
          {# if i couldnt loop through the travel form i was gonna kms  #}
          <h1>Travel Form</h1>
          {% for i in form.travelForm %}
-            <div class="row">
+            <div class="row border-bottom">
                <div class="row question">
                   <div class="col">
                      {{ form_label(i) }}
@@ -107,6 +107,8 @@
    {
       document.getElementById("travel_form_womenQuestions").value = document.getElementById("breast").checked+","+document.getElementById("plan").checked;
    }
+
+
 
 </script>
 {% endblock %}
