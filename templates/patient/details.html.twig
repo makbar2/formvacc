@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PatientController!{% endblock %}
+
+{% block body %}
+   {# i hate front end, making stuff look nice is fucking annoying #}
+    <div class="box mx-auto">
+        <div id="patientDetails" class="section">
+            <div class="row">
+                <div class="col">
+                    Name : {{ patient.getName }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Date of Birth : {{ patient.dobStr }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Gender : {{ patient.getGender }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Email : {{ patient.getEmail }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Address : {{ patient.getAddress }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    GP Name : {{ patient.getGpName }}, GP Address : {{ patient.getGpAddress }}
+                </div>
+            </div>
+        </div>
+        <div class=section id="patientQuestions">
+            {% for i in attr %}
+                {# no switch statements ): #}
+                {% if i == "feelingWell" %}
+                {% endif %}
+            {% endfor %}
+            <div class="row">
+                <div class="col">
+                    are you feeling well today
+                </div>
+                    {% if patient.travelForm.feelingWell %}
+                    <div class="col">
+                        <input type="checkbox" class="form-check" checked="checked" disabled>
+                    </div>
+                    <div class="col">
+
+                    </div>
+                    {% endif %}
+
+            </div>
+            {# <div class="row">
+                <div class="col">
+                    have you had any recent or past medical history of note
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you take any current medicines or are you taking halofantrine
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Do you have any allergies to any medicines, latex or gloves
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you know if you're hypersensitive to mefloquine or related compounds
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you or any of your family suffer from epilepsy
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you have a history of black water fever
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you have severe impairment of liver function
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    have you undergone radiotherapy, chemotherapy, steroids treatment
+                    {{ if patient.travelForm. }}
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    do you have a history of the following: anxiety, depression, heart, lung, spleen, liver,
+                    kidney, immunity, blood conditions, disorders, diabetes, hiv-adis
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Do you have Cancer ?
+                </div>
+                <div class="col">
+                    {{ if patient.travelForm. }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Are you HIV positive ?
+                </div>
+                <div class="col"></div>
+            </div> #}
+        </div>
+    </div>
+
+{% endblock %}

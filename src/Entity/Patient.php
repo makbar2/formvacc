@@ -61,6 +61,11 @@ class Patient
         return $this;
     }
 
+    public function getName()
+    {
+        return $this->firstName." ".$this->surname;
+    }
+
     public function getSurname(): ?string
     {
         return $this->surname;
@@ -102,7 +107,7 @@ class Patient
         return $this;
     }
 
-    public function isGender(): ?bool
+    public function getGender(): ?bool
     {
         return $this->gender;
     }

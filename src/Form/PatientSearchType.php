@@ -16,9 +16,19 @@ class PatientSearchType extends AbstractType
         $builder
             ->add("searchQuery", SearchType::class,
             [
-                "mapped" => false
+
+                "mapped" => false,
+                "attr"=>[
+                    "class"  => "form-control",
+
+                ],
+                "label" => "Search a Patient",
             ])
-            ->add("submit",SubmitType::class)
+            ->add("submit",SubmitType::class,[
+                "attr" => [
+                    "class" => "btn btn-primary",
+                ],
+            ])
         ;
     }
 

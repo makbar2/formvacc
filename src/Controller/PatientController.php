@@ -16,12 +16,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function PHPUnit\Framework\matches;
+
 
 class PatientController extends AbstractController
 {
 
-    #[Route('/search', name: 'app_patient_search')]
+    #[Route('/patient/search', name: 'app_patient_search')]
     public function index(): Response
     {
         //todo: live search maybe, learn react probs for this normal ajax will be ball ache
@@ -101,7 +101,6 @@ class PatientController extends AbstractController
             $patients = null;
         }
         //doctrine should be doing lazy loading here so we good
-        dump($patients);
         return $this->render('patient/list.html.twig', [
             "patients" => $patients,
         ]);
@@ -114,9 +113,16 @@ class PatientController extends AbstractController
      * @return void
      */
     #[Route('/patient/details/{id}', name: 'app_patient_details')]
-    public function patientDetails(int $id)
+    public function patientDetails(int $id,ManagerRegistry $doctrine): Response
     {
+        $travelForm = $this->createForm(TravelFormType::class);//so that you can edit the patient's form
+        $patient = $doctrine->getRepository(Patient::class)->find($id);
+        dump($patient->getTravelForm()->getResults());
+        return $this->render('patient/details.html.twig', [
+            "patient" => $patient,
+            "form" => $travelForm,
 
+        ]);
     }
 
     #[Route('/patient/delete/{id}', name: 'app_patient_delete ')]

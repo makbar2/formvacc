@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\MedicalHistoryRepository;
-use Doctrine\DBAL\Driver\PDO\Exception;
+
 use Doctrine\ORM\Mapping as ORM;
-use MongoDB\Driver\Exception\ExecutionTimeoutException;
+
 
 #[ORM\Entity(repositoryClass: MedicalHistoryRepository::class)]
 class TravelForm
@@ -15,86 +15,83 @@ class TravelForm
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 300, nullable: true)]
     private ?string $feelingWell = null;
 
-    #[ORM\Column(length: 300)]
+    #[ORM\Column(length: 300, nullable: true)]
     private ?string $pastMedicalHistory = null;
 
-    #[ORM\Column(length: 300)]
+    #[ORM\Column(length: 300, nullable: true)]
     private ?string $currentMedicines = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $allergies = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $hypersensitive = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $epilepsy = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $blackWater = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $liverFunction = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 200, nullable: true)]
     private ?string $therapy = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $history = null;
 
     #[ORM\OneToOne(inversedBy: 'travelForm', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $patient = null;
 
-    #[ORM\Column(length: 150)]
-    private ?string $yellowReaction = null;
-
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 150, nullable: true)]
     private ?string $hadCancer = null;
-
-    #[ORM\Column(length: 150)]
+    //vaccine history
+    #[ORM\Column(length: 150, nullable: true)]
     private ?string $hivPositive = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $DTP = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $hep_b = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $Rabies = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $Shingles = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $Typhoid = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $Meningitis = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $JapBEncephalitis = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $MeningitisB = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $Chickenpox = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $hep_a = null;
 
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $yellow_fever = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable: true)]
     private ?string $influenza = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30, nullable:true)]
     private ?string $tick_born_encephalitis = null;
 
     #[ORM\Column(nullable: true)]
@@ -103,20 +100,22 @@ class TravelForm
     #[ORM\Column(nullable: true)]
     private ?bool $breastFeeding = null;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
 
     public function isFeelingWell(): ?string
     {
         return $this->feelingWell;
     }
 
-    public function setFeelingWell(string $feelingWell): self
+    public function setFeelingWell(?string $feelingWell): self
     {
         $this->feelingWell = $feelingWell;
-
         return $this;
     }
 
@@ -125,7 +124,7 @@ class TravelForm
         return $this->pastMedicalHistory;
     }
 
-    public function setPastMedicalHistory(string $pastMedicalHistory): self
+    public function setPastMedicalHistory(?string $pastMedicalHistory): self
     {
         $this->pastMedicalHistory = $pastMedicalHistory;
 
@@ -137,7 +136,7 @@ class TravelForm
         return $this->currentMedicines;
     }
 
-    public function setCurrentMedicines(string $currentMedicines): self
+    public function setCurrentMedicines(?string $currentMedicines): self
     {
         $this->currentMedicines = $currentMedicines;
 
@@ -149,7 +148,7 @@ class TravelForm
         return $this->allergies;
     }
 
-    public function setAllergies(string $allergies): self
+    public function setAllergies(?string $allergies): self
     {
         $this->allergies = $allergies;
 
@@ -161,7 +160,7 @@ class TravelForm
         return $this->hypersensitive;
     }
 
-    public function setHypersensitive(string $hypersensitive): self
+    public function setHypersensitive(?string $hypersensitive): self
     {
         $this->hypersensitive = $hypersensitive;
 
@@ -173,7 +172,7 @@ class TravelForm
         return $this->epilepsy;
     }
 
-    public function setEpilepsy(string $epilepsy): self
+    public function setEpilepsy(?string $epilepsy): self
     {
         $this->epilepsy = $epilepsy;
 
@@ -185,7 +184,7 @@ class TravelForm
         return $this->blackWater;
     }
 
-    public function setBlackWater(string $blackWater): self
+    public function setBlackWater(?string $blackWater): self
     {
         $this->blackWater = $blackWater;
 
@@ -197,7 +196,7 @@ class TravelForm
         return $this->liverFunction;
     }
 
-    public function setLiverFunction(string $liverFunction): self
+    public function setLiverFunction(?string $liverFunction): self
     {
         $this->liverFunction = $liverFunction;
 
@@ -209,7 +208,7 @@ class TravelForm
         return $this->therapy;
     }
 
-    public function setTherapy(string $therapy): self
+    public function setTherapy(?string $therapy): self
     {
         $this->therapy = $therapy;
 
@@ -221,7 +220,7 @@ class TravelForm
         return $this->history;
     }
 
-    public function setHistory(string $history): self
+    public function setHistory(?string $history): self
     {
         $this->history = $history;
 
@@ -240,24 +239,14 @@ class TravelForm
         return $this;
     }
 
-    public function getYellowReaction(): ?string
-    {
-        return $this->yellowReaction;
-    }
 
-    public function setYellowReaction(string $yellowReaction): self
-    {
-        $this->yellowReaction = $yellowReaction;
-
-        return $this;
-    }
 
     public function getHadCancer(): ?string
     {
         return $this->hadCancer;
     }
 
-    public function setHadCancer(string $hadCancer): self
+    public function setHadCancer(?string $hadCancer): self
     {
         $this->hadCancer = $hadCancer;
 
@@ -269,7 +258,7 @@ class TravelForm
         return $this->hivPositive;
     }
 
-    public function setHivPositive(string $hivPositive): self
+    public function setHivPositive(?string $hivPositive): self
     {
         $this->hivPositive = $hivPositive;
 
@@ -281,7 +270,7 @@ class TravelForm
         return $this->DTP;
     }
 
-    public function setDTP(string $DTP): self
+    public function setDTP(?string $DTP): self
     {
         $this->DTP = $DTP;
 
@@ -293,7 +282,7 @@ class TravelForm
         return $this->hep_b;
     }
 
-    public function setHepB(string $hepB): self
+    public function setHepB(?string $hepB): self
     {
         $this->hep_b = $hepB;
 
@@ -305,7 +294,7 @@ class TravelForm
         return $this->Rabies;
     }
 
-    public function setRabies(string $Rabies): self
+    public function setRabies(?string $Rabies): self
     {
         $this->Rabies = $Rabies;
 
@@ -317,7 +306,7 @@ class TravelForm
         return $this->Shingles;
     }
 
-    public function setShingles(string $Shingles): self
+    public function setShingles(?string $Shingles): self
     {
         $this->Shingles = $Shingles;
 
@@ -329,7 +318,7 @@ class TravelForm
         return $this->Typhoid;
     }
 
-    public function setTyphoid(string $Typhoid): self
+    public function setTyphoid(?string $Typhoid): self
     {
         $this->Typhoid = $Typhoid;
 
@@ -341,7 +330,7 @@ class TravelForm
         return $this->Meningitis;
     }
 
-    public function setMeningitis(string $Meningitis): self
+    public function setMeningitis(?string $Meningitis): self
     {
         $this->Meningitis = $Meningitis;
 
@@ -353,7 +342,7 @@ class TravelForm
         return $this->JapBEncephalitis;
     }
 
-    public function setJapBEncephalitis(string $JapBEncephalitis): self
+    public function setJapBEncephalitis(?string $JapBEncephalitis): self
     {
         $this->JapBEncephalitis = $JapBEncephalitis;
 
@@ -365,7 +354,7 @@ class TravelForm
         return $this->MeningitisB;
     }
 
-    public function setMeningitisB(string $MeningitisB): self
+    public function setMeningitisB(?string $MeningitisB): self
     {
         $this->MeningitisB = $MeningitisB;
 
@@ -377,7 +366,7 @@ class TravelForm
         return $this->Chickenpox;
     }
 
-    public function setChickenpox(string $Chickenpox): self
+    public function setChickenpox(?string $Chickenpox): self
     {
         $this->Chickenpox = $Chickenpox;
 
@@ -389,7 +378,7 @@ class TravelForm
         return $this->hep_a;
     }
 
-    public function setHepA(string $hepA): self
+    public function setHepA(?string $hepA): self
     {
         $this->hep_a = $hepA;
 
@@ -401,7 +390,7 @@ class TravelForm
         return $this->yellow_fever;
     }
 
-    public function setYellowFever(string $yellow_fever): self
+    public function setYellowFever(?string $yellow_fever): self
     {
         $this->yellow_fever = $yellow_fever;
 
@@ -413,7 +402,7 @@ class TravelForm
         return $this->influenza;
     }
 
-    public function setInfluenza(string $influenza): self
+    public function setInfluenza(?string $influenza): self
     {
         $this->influenza = $influenza;
 
@@ -425,7 +414,7 @@ class TravelForm
         return $this->tick_born_encephalitis;
     }
 
-    public function setTickBornEncephalitis(string $tick_born_encephalitis): self
+    public function setTickBornEncephalitis(?string $tick_born_encephalitis): self
     {
         $this->tick_born_encephalitis = $tick_born_encephalitis;
 
@@ -433,121 +422,139 @@ class TravelForm
     }
 
 
-    /**
-     * @param $form
-     * @param $field "textField" or "date"
-     * @return void
-     * @throws \Exception
-     */
-    public function setData($form,$field)
+
+    public function setData($form)
     {
+        /**
+         * form is an 2d keyvalue array, each key responds to a question on the form
+         * the inner arrays for questions have two values check and textField, textField is if the user has ticked the box,
+         * textfield is what the user might have entered
+         * for vaccine history, check is used again and then the date they have entered
+         */
+        //dump($form);
         foreach ($form as $i => $value)
         {
+            //dump($i,$value);
             switch($i)
             {
                 default:
                     throw new \Exception("Invalid array in travelForm");
                     break;
                 case "feelingWell":
-                    $this->setFeelingWell($this->formatAnswer($value,$field));
+                    $this->setFeelingWell($this->formatAnswer($value,false));
                     break;
                 case "pastMedicalHistory":
-                    $this->setPastMedicalHistory($this->formatAnswer($value,$field));
+                    $this->setPastMedicalHistory($this->formatAnswer($value,false));
                     break;
                 case "currentMedicines":
-                    $this->setCurrentMedicines($this->formatAnswer($value,$field));
+                    $this->setCurrentMedicines($this->formatAnswer($value,false));
                     break;
                 case "allergies":
-                    $this->setAllergies($this->formatAnswer($value,$field));
+                    $this->setAllergies($this->formatAnswer($value,false));
                     break;
                 case "hypersensitive":
-                    $this->setHypersensitive($this->formatAnswer($value,$field));
+                    $this->setHypersensitive($this->formatAnswer($value,false));
                     break;
                 case "epilepsy":
-                    $this->setEpilepsy($this->formatAnswer($value,$field));
+                    $this->setEpilepsy($this->formatAnswer($value,false));
                     break;
                 case "blackWater":
-                    $this->setBlackWater($this->formatAnswer($value,$field));
+                    $this->setBlackWater($this->formatAnswer($value,false));
                     break;
                 case "liverFunction":
-                    $this->setLiverFunction($this->formatAnswer($value,$field));
+                    $this->setLiverFunction($this->formatAnswer($value,false));
                     break;
                 case "therapy":
-                    $this->setTherapy($this->formatAnswer($value,$field));
+                    $this->setTherapy($this->formatAnswer($value,false),true);
                     break;
                 case "history":
-                    $this->setHistory($this->formatAnswer($value,$field));
+                    $this->setHistory($this->formatAnswer($value,false));
                     break;
                 case "hadCancer":
-                    $this->setHadCancer($this->formatAnswer($value,$field));
+                    $this->setHadCancer($this->formatAnswer($value,false));
                     break;
-                case "yellowReaction":
-                    $this->setYellowReaction($this->formatAnswer($value,$field));
+                case "yellowFever":
+                    $this->setYellowFever($this->formatAnswer($value,true));
                     break;
                 case "hivPositive":
-                    $this->setHivPositive($this->formatAnswer($value,$field));
+                    $this->setHivPositive($this->formatAnswer($value,true));
                     break;
                 case "DTP":
-                    $this->setDTP($this->formatAnswer($value,$field));
+                    $this->setDTP($this->formatAnswer($value,true));
                     break;
                 case "hep_b":
-                    $this->setHepB($this->formatAnswer($value,$field));
+                    $this->setHepB($this->formatAnswer($value,true));
                     break;
                 case "Rabies":
-                    $this->setRabies($this->formatAnswer($value,$field));
+                    $this->setRabies($this->formatAnswer($value,true));
                     break;
                 case "shingles":
-                    $this->setShingles($this->formatAnswer($value,$field));
+                    $this->setShingles($this->formatAnswer($value,true));
                     break;
                 case "Typhoid":
-                    $this->setTyphoid($this->formatAnswer($value,$field));
+                    $this->setTyphoid($this->formatAnswer($value,true));
                     break;
                 case "Meningitis":
-                    $this->setMeningitis($this->formatAnswer($value,$field));
+                    $this->setMeningitis($this->formatAnswer($value,true));
                     break;
                 case "chickenPox":
-                    $this->setChickenpox($this->formatAnswer($value,$field));
+                    $this->setChickenpox($this->formatAnswer($value,true));
                     break;
                 case "hepA":
-                    $this->setHepA($this->formatAnswer($value,$field));
+                    $this->setHepA($this->formatAnswer($value,true));
                     break;
                 case "Influenza":
-                    $this->setInfluenza($this->formatAnswer($value,$field));
+                    $this->setInfluenza($this->formatAnswer($value,true));
                     break;
                 case "tickBornEncephalitis":
-                    $this->setTickBornEncephalitis($this->formatAnswer($value,$field));
+                    $this->setTickBornEncephalitis($this->formatAnswer($value,true));
                     break;
                 case "JapBEncephalitis":
-                    $this->setJapBEncephalitis($this->formatAnswer($value,$field));
+                    $this->setJapBEncephalitis($this->formatAnswer($value,true));
                     break;
                 case "MeningitisB":
-                    $this->setMeningitisB($this->formatAnswer($value,$field));
+                    $this->setMeningitisB($this->formatAnswer($value,true));
                     break;
             }
         }
     }
 
 
-    public function setWomenQuestions(string $data)
+
+    public function setWomenQuestions(?string $data)
     {
-        $data = explode(",",$data);
-        $this->planPregnancy = $data[0];
-        $this->breastFeeding = $data[1];
+        if($data)
+        {
+            $data = explode(",",$data);
+            $this->planPregnancy = $data[0];
+            $this->breastFeeding = $data[1];
+        }
     }
 
-    private function formatAnswer($answer,$field): string
-    {
 
+    private function formatAnswer(array $answer,bool $date): ?string
+    {
+        /**
+         * string will be returned if the user has entered any
+         */
         if($answer["check"])
         {
-            if($field == "date")
+            if($date)
             {
-
-                $answer[$field] = $answer[$field]->format("Y-m-d");
+                return $answer["check"].",".$answer["date"]->format("Y-m-d");
+            }else{
+                if($answer["textField"] == null)
+                {
+                    return "";
+                }else
+                {
+                    return $answer["textField"];
+                }
             }
-            return $answer["check"].",".$answer[$field];
+        }else{
+
+            return null;
         }
-        return "";
     }
 
     public function getPlanPregnancy(): ?bool
@@ -573,4 +580,87 @@ class TravelForm
 
         return $this;
     }
+
+    public function getResults(): array
+    {
+        /**
+         * returns two arrays, one filled with the data from the qeustions that were asked to the user
+         * the other array is filled with their vaccine history, containting wheather they've had it and the date
+         */
+        $attr = get_object_vars($this);
+        $historyArray = [];
+        $questionArray = [];
+        $check="";
+        $comment="";
+        //dump($attr);
+        $invalidAttributes = ["id","patient"];
+        foreach($attr as $i => $value)
+        {
+            if(!in_array($i,$invalidAttributes))
+            {
+                dump($i,$value);
+                switch($i)
+                {
+                    case "feelingWell":
+                        $questionArray[$i] = ["are you feeling well today",$value];
+                        break;
+                    case "pastMedicalHistory":
+                        $questionArray[$i] = ["have you had any recent or past medical history of note ",$value];
+                        break;
+                    case "currentMedicines":
+                        $questionArray[$i] = ["do you take any current medicines or are you taking halofantrine",$value];
+                        break;
+                    case "allergies":
+                        $questionArray[$i] = ["do you have any allergies to any medicines, latex or gloves ",$value];
+                        break;
+                    case "hypersensitive":
+                        $questionArray[$i] = ["do you know if you're hypersensitive to mefloquine or related compounds",$value];
+                        break;
+                    case "epilepsy":
+                        $questionArray[$i] = ["do you or any of your family suffer from epilepsy ",$value];
+                        break;
+                    case "blackWater":
+                        $questionArray[$i] = ["do you have a history of black water fever",$value];
+                        break;
+                    case "liverFunction":
+                        $questionArray[$i] = ["do you have severe impairment of liver function",$value];
+                        break;
+                    case "therapy":
+                        $questionArray[$i] = ["have you undergone radiotherapy, chemotherapy, steroids treatment",$value];
+                        break;
+                    case "history":
+                        $questionArray[$i] = ["do you have a history of the following: anxiety, depression, heart, lung, spleen, liver. kidney, immunity, blood conditions, disorders, diabetes, hiv-adis",$value];
+                        break;
+                    case "hadCancer":
+                        $questionArray[$i] = ["Do you have Cancer ?",$value];
+                        break;
+                    case "hivPositive":
+                        $questionArray[$i] = ["Are you HIV positive ?",$value];
+                        break;
+                    //vaccine history lol, there are other values in the array that arn't being used
+                    case "DTP":
+                    case "hep_b":
+                    case "Rabies":
+                    case "shingles":
+                    case "Typhoid":
+                    case "Meningitis":
+                    case "chickenPox":
+                    case "hepA":
+                    case "Influenza":
+                    case "tickBornEncephalitis":
+                    case "JapBEncephalitis":
+                    case "MeningitisB":
+                        if(str_contains(",",$value))
+                        {
+                            $historyArray[$i] = [$check,$value];
+                        }
+                        break;
+                    default: break;
+                }
+            }
+        }
+        return [$questionArray,$historyArray];
+    }
+
+
 }

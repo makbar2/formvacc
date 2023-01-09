@@ -6,7 +6,10 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            {{ form(form) }}
+            {{ form_start(form) }}
+                {{ form_row(form.searchQuery) }}
+                {{ form_row(form.submit) }}
+            {{ form_end(form) }}
         </div>
         <div class="col"></div>
     </div>

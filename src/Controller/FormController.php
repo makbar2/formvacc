@@ -15,6 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FormController extends AbstractController
 {
+
+    /**
+     * todo: need a way to validate the emails, sometimes people would use the same email for this
+     * what would happen if the same person uploads a form with the same details, maybe make an account using
+     * a google login ??
+     * also look at other validation stuff
+     */
+
     #[Route('/form', name: 'app_form')]
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -28,7 +36,6 @@ class FormController extends AbstractController
              * add extra information if needed.
              * todo:record vaccine history too
              */
-            //dump($travelForm->getData());
             $patientTravelForm  = new TravelForm();
             try
             {
@@ -39,6 +46,8 @@ class FormController extends AbstractController
                 $patient->setTravelForm($patientTravelForm);
                 dump($patient);
                 //add to databse
+                $entityManager->persist($patient);
+                $entityManager->flush();
 
             }catch(\Exception $e)
             {
@@ -46,7 +55,6 @@ class FormController extends AbstractController
                 //todo: send an error log
                 $this->redirectToRoute("app_form_error");
             }
-
         }
         return $this->render('form/index.html.twig', [
             "form" => $travelForm,

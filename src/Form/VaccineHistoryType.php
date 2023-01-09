@@ -47,7 +47,7 @@ class VaccineHistoryType extends AbstractType
 
                 ]
             )
-            ->add("yellowReaction", CheckDateType::class,
+            ->add("yellowFever", CheckDateType::class,
                 [
 
                 ]
