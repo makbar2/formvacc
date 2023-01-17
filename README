@@ -1,0 +1,10 @@
+You need php 8.1 
+  x_debug
+  phpfileinfo 
+  composer
+  and some other stuff
+  
+ start a local host with symfony:serve
+follows mvc kinda 
+the twig files are the web pages and the back end is done by the controllers, the controllers should control one aspect of the web app e.g. forms or admin stuff
+
